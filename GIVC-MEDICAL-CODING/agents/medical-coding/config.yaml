@@ -1,0 +1,325 @@
+# GIVC Medical Coding Specialized Agent Configuration
+# Extends BrainSAIT agent framework with medical coding capabilities
+
+agent_orchestration:
+  enabled: true
+  workflow_type: "medical_coding_pipeline"
+  quality_threshold: 0.95
+  compliance_required: true
+
+agents:
+  medical_planner:
+    name: "Medical Coding Course Planner"
+    model: "claude-opus-4"  # High accuracy requirement
+    role: "Create comprehensive course blueprints aligned with certification requirements"
+    
+    context:
+      - aapc_certification_requirements
+      - ahima_competency_framework
+      - gcc_market_analysis
+      - adult_learning_principles
+      - saudi_healthcare_standards
+      
+    inputs:
+      - certification_requirements
+      - market_analysis
+      - competency_framework
+      - duration_constraints
+      
+    outputs:
+      - module_blueprint
+      - assessment_strategy
+      - time_allocations
+      - competency_mapping
+      
+    validation_hooks:
+      - certification_alignment_checker
+      - competency_mapper
+      - market_relevance_validator
+      
+    accuracy_target: 0.98
+    review_required: true
+
+  content_writer:
+    name: "Medical Coding Content Creator"
+    model: "claude-opus-4"
+    role: "Create medically accurate coding content with clinical scenarios"
+    
+    context:
+      - current_coding_guidelines
+      - icd10_am_standards
+      - schi_procedures
+      - clinical_documentation
+      
+    validates:
+      - current_guidelines
+      - coding_accuracy
+      - clinical_relevance
+      - regulatory_compliance
+      
+    outputs:
+      - lesson_content
+      - clinical_scenarios
+      - coding_examples
+      - assessment_questions
+      
+    quality_checks:
+      - medical_accuracy_review
+      - guideline_compliance_check
+      - clinical_relevance_validation
+      
+    accuracy_target: 0.95
+    auto_validation: false
+
+  example_generator:
+    name: "Medical Coding Exercise Generator"
+    model: "claude-opus-4"
+    role: "Generate realistic coding exercises and scenarios"
+    
+    creates:
+      - deidentified_charts
+      - coding_scenarios
+      - answer_keys_with_rationale
+      - progressive_difficulty_exercises
+      
+    data_sources:
+      - medical_case_templates
+      - coding_guideline_updates
+      - real_world_scenarios
+      - compliance_examples
+      
+    constraints:
+      - hipaa_compliant: true
+      - phi_removal: automatic
+      - accuracy_verified: true
+      - peer_reviewed: true
+      
+    output_format:
+      - structured_json
+      - bilingual_support
+      - difficulty_tagged
+      - competency_aligned
+
+  arabic_medical_translator:
+    name: "Arabic Medical Terminology Translator"
+    model: "claude-sonnet-4"
+    role: "Translate medical coding content with WHO EMRO standards"
+    
+    resources:
+      - who_emro_api_key: "${WHO_EMRO_API_KEY}"
+      - unified_medical_dictionary: "/resources/umd_latest.json"
+      - dialect_preferences: "gcc_standard"
+      - snomed_ct_arabic: "enabled"
+      
+    features:
+      - code_switching_support: true
+      - percentage_target: 44.8
+      - rtl_formatting: automatic
+      - terminology_validation: strict
+      - cultural_adaptation: enabled
+      
+    quality_assurance:
+      - medical_linguist_review
+      - cultural_competency_check
+      - terminology_consistency
+      - regional_adaptation
+      
+    output_languages:
+      - arabic_primary
+      - english_secondary
+      - bilingual_integrated
+
+  medical_qa_reviewer:
+    name: "Clinical and Coding Accuracy Reviewer"
+    model: "claude-opus-4"
+    role: "Validate medical accuracy and coding compliance"
+    
+    credentials_required:
+      - certified_coder: true
+      - clinical_experience: "5+ years"
+      - continuing_education: "current"
+      
+    checks:
+      - guideline_compliance
+      - reimbursement_accuracy
+      - educational_effectiveness
+      - clinical_correlation
+      - regulatory_alignment
+      
+    validation_criteria:
+      - code_accuracy: ">95%"
+      - guideline_currency: "latest"
+      - clinical_relevance: "verified"
+      - educational_value: "assessed"
+      
+    escalation_triggers:
+      - accuracy_below_threshold
+      - guideline_conflicts
+      - clinical_inconsistencies
+      - compliance_violations
+
+  compliance_validator:
+    name: "Regulatory Compliance Validator"
+    model: "claude-opus-4"
+    role: "Ensure regulatory and privacy compliance"
+    
+    validates:
+      - hipaa_requirements
+      - no_surprises_act
+      - price_transparency
+      - phi_protection
+      - data_residency
+      
+    compliance_frameworks:
+      - hipaa_security_rule
+      - gdpr_requirements
+      - saudi_data_protection
+      - healthcare_standards
+      
+    automated_checks:
+      - phi_detection
+      - compliance_scoring
+      - risk_assessment
+      - audit_trail_creation
+      
+    reporting:
+      - compliance_dashboard
+      - violation_alerts
+      - remediation_suggestions
+      - audit_documentation
+
+  instructor_material_creator:
+    name: "Teaching Resource Generator"
+    model: "claude-sonnet-4"
+    role: "Generate comprehensive instructor materials"
+    
+    generates:
+      - lesson_plans
+      - presentation_slides
+      - facilitator_guides
+      - assessment_rubrics
+      - training_materials
+      
+    templates:
+      - givc_lesson_template
+      - bilingual_slides
+      - interactive_activities
+      - assessment_guidelines
+      
+    customization:
+      - instructor_preferences
+      - class_size_adaptation
+      - technology_availability
+      - cultural_considerations
+      
+    quality_standards:
+      - pedagogical_soundness
+      - cultural_appropriateness
+      - accessibility_compliance
+      - engagement_optimization
+
+  assessment_builder:
+    name: "Assessment and Exam Creator"
+    model: "claude-opus-4"
+    role: "Create comprehensive coding assessments"
+    
+    produces:
+      - formative_assessments
+      - certification_practice
+      - performance_analytics
+      - adaptive_testing
+      
+    question_types:
+      - multiple_choice
+      - scenario_based
+      - word_construction
+      - case_analysis
+      - practical_coding
+      
+    difficulty_progression:
+      - beginner_level
+      - intermediate_level
+      - advanced_level
+      - specialty_level
+      
+    analytics_integration:
+      - performance_tracking
+      - competency_mapping
+      - remediation_pathways
+      - progress_visualization
+
+workflows:
+  course_development:
+    steps:
+      1. medical_planner_blueprint
+      2. content_writer_development
+      3. example_generator_exercises
+      4. arabic_translator_localization
+      5. medical_qa_review
+      6. compliance_validation
+      7. instructor_material_creation
+      8. assessment_building
+      9. final_quality_assurance
+      10. publication_approval
+    
+    parallel_processing:
+      - translation_and_content: true
+      - qa_and_compliance: true
+      - materials_and_assessment: true
+    
+    quality_gates:
+      - accuracy_threshold: 0.95
+      - compliance_verified: true
+      - peer_review_complete: true
+      - accessibility_validated: true
+
+  content_updates:
+    triggers:
+      - guideline_changes
+      - regulatory_updates
+      - feedback_incorporation
+      - accuracy_improvements
+    
+    automation_level: "semi_automated"
+    approval_required: true
+    rollback_capability: true
+
+validation_hooks:
+  pre_save:
+    - phi_scanner
+    - terminology_checker
+    - coding_validator
+    - format_validator
+  
+  pre_publish:
+    - accuracy_validator
+    - compliance_checker
+    - quality_assurance
+    - accessibility_audit
+  
+  post_publish:
+    - performance_monitor
+    - user_feedback_collector
+    - analytics_tracker
+    - improvement_identifier
+
+integration:
+  brainsait_pipeline: true
+  existing_workflows: "extend"
+  content_management: "unified"
+  notification_system: "slack_integration"
+  version_control: "git_based"
+  
+security:
+  phi_protection: true
+  encrypted_storage: true
+  access_logging: true
+  audit_trail: "comprehensive"
+  data_residency: "configurable"
+
+monitoring:
+  agent_performance: true
+  content_quality: true
+  user_engagement: true
+  system_health: true
+  compliance_status: true

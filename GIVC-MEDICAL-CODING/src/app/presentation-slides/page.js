@@ -1,0 +1,1009 @@
+export const dynamic = 'force-static';
+
+export default function PresentationSlides() {
+  return (
+    <div dangerouslySetInnerHTML={{
+      __html: `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BRAINSAIT Investment Presentation</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: #f8fafc;
+        overflow: hidden;
+      }
+
+      .presentation-container {
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+      }
+
+      .slide {
+        width: 100%;
+        height: 100%;
+        display: none;
+        padding: 60px;
+        background: white;
+        position: relative;
+        overflow-y: auto;
+      }
+
+      .slide.active {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .slide-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .slide-title {
+        font-size: 3rem;
+        font-weight: 800;
+        color: #0066cc;
+        margin-bottom: 15px;
+      }
+
+      .slide-subtitle {
+        font-size: 1.5rem;
+        color: #666;
+      }
+
+      .slide-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .controls {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 15px;
+        z-index: 1000;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 15px;
+        border-radius: 50px;
+      }
+
+      .control-btn {
+        background: #0066cc;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .control-btn:hover {
+        background: #004499;
+        transform: translateY(-2px);
+      }
+
+      .slide-number {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        background: #0066cc;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 20px;
+        font-weight: 600;
+      }
+
+      .hero-slide {
+        background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+        color: white;
+        text-align: center;
+        justify-content: center;
+      }
+
+      .hero-logo {
+        font-size: 5rem;
+        font-weight: 900;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero-tagline {
+        font-size: 2rem;
+        margin-bottom: 40px;
+        opacity: 0.9;
+      }
+
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        margin-top: 60px;
+      }
+
+      .hero-stat {
+        text-align: center;
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+      }
+
+      .hero-stat-number {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 10px;
+      }
+
+      .hero-stat-label {
+        font-size: 1rem;
+        opacity: 0.9;
+      }
+
+      .two-column {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+
+      .big-number {
+        font-size: 6rem;
+        font-weight: 900;
+        color: #0066cc;
+        text-align: center;
+        margin: 40px 0;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+        margin: 40px 0;
+      }
+
+      .feature-card {
+        background: #f8fafc;
+        padding: 30px;
+        border-radius: 15px;
+        border-left: 5px solid #0066cc;
+      }
+
+      .feature-icon {
+        font-size: 3rem;
+        margin-bottom: 15px;
+      }
+
+      .feature-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: #0066cc;
+      }
+
+      .timeline-slide {
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
+        gap: 40px;
+      }
+
+      .timeline-phase {
+        flex: 1;
+        background: #f8fafc;
+        padding: 40px;
+        border-radius: 15px;
+        text-align: center;
+        border-top: 5px solid #0066cc;
+      }
+
+      .phase-number {
+        font-size: 4rem;
+        font-weight: 900;
+        color: #0066cc;
+        margin-bottom: 20px;
+      }
+
+      .phase-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+      }
+
+      .phase-duration {
+        background: #0066cc;
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        display: inline-block;
+      }
+
+      .revenue-chart {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        height: 400px;
+        margin: 40px 0;
+        padding: 20px;
+        background: #f8fafc;
+        border-radius: 15px;
+      }
+
+      .revenue-bar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+        margin: 0 10px;
+      }
+
+      .bar {
+        background: linear-gradient(to top, #0066cc, #00a651);
+        width: 60px;
+        border-radius: 5px 5px 0 0;
+        margin-bottom: 10px;
+        position: relative;
+      }
+
+      .bar-value {
+        position: absolute;
+        top: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-weight: 700;
+        color: #0066cc;
+        font-size: 0.9rem;
+      }
+
+      .bar-year {
+        font-weight: 600;
+        color: #666;
+      }
+
+      .cta-slide {
+        background: linear-gradient(135deg, #00a651 0%, #007a3d 100%);
+        color: white;
+        text-align: center;
+        justify-content: center;
+      }
+
+      .cta-title {
+        font-size: 4rem;
+        font-weight: 900;
+        margin-bottom: 30px;
+      }
+
+      .cta-subtitle {
+        font-size: 1.5rem;
+        margin-bottom: 50px;
+        opacity: 0.9;
+      }
+
+      .investment-details {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        margin: 50px 0;
+      }
+
+      .investment-item {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 40px;
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+      }
+
+      .investment-amount {
+        font-size: 3rem;
+        font-weight: 900;
+        margin-bottom: 10px;
+      }
+
+      .investment-source {
+        font-size: 1.2rem;
+        opacity: 0.9;
+      }
+
+      @media print {
+        .controls {
+          display: none;
+        }
+        .slide {
+          display: block !important;
+          page-break-after: always;
+          height: auto;
+          min-height: 100vh;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="presentation-container">
+      <!-- Slide 1: Title -->
+      <div class="slide hero-slide active">
+        <div class="slide-number">1 / 8</div>
+        <div class="slide-content">
+          <h1 class="hero-logo">
+            BRAINSAIT <span style="font-family: 'Amiri', serif">برينسايت</span>
+          </h1>
+          <p class="hero-tagline">
+            Global Integrated Virtual Care and Revenue Cycle Management
+          </p>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <div class="hero-stat-number">SAR 94M</div>
+              <div class="hero-stat-label">Series A Round</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-number">SAR 10.5 billion</div>
+              <div class="hero-stat-label">Market Size by 2030</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-number">15K+</div>
+              <div class="hero-stat-label">Job Shortage</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-number">BOT</div>
+              <div class="hero-stat-label">Unique Model</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2: Problem -->
+      <div class="slide">
+        <div class="slide-number">2 / 8</div>
+        <div class="slide-header">
+          <h1 class="slide-title">The Problem</h1>
+          <p class="slide-subtitle">
+            Saudi Healthcare Faces Critical Challenges
+          </p>
+        </div>
+        <div class="slide-content">
+          <div class="feature-grid">
+            <div class="feature-card">
+              <div class="feature-icon">🏥</div>
+              <h3 class="feature-title">NPHIES Compliance Gap</h3>
+              <p>
+                100% of healthcare facilities must comply with NPHIES by 2025,
+                but most lack technical expertise and trained staff.
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">👨‍⚕️</div>
+              <h3 class="feature-title">Massive Workforce Shortage</h3>
+              <p>
+                15,000+ medical coding professionals needed by 2027 to support
+                Vision 2030 healthcare transformation.
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">💰</div>
+              <h3 class="feature-title">Revenue Cycle Inefficiencies</h3>
+              <p>
+                Healthcare facilities losing 15-20% of potential revenue due to
+                coding errors and claim denials.
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">🌐</div>
+              <h3 class="feature-title">Language & Cultural Barriers</h3>
+              <p>
+                International solutions lack Arabic language support and
+                understanding of Saudi healthcare practices.
+              </p>
+            </div>
+          </div>
+          <div class="big-number">SAR 5.6 billion</div>
+          <p style="text-align: center; font-size: 1.2rem; color: #666">
+            Annual revenue losses due to RCM inefficiencies in Saudi healthcare
+          </p>
+        </div>
+      </div>
+
+      <!-- Slide 3: Solution -->
+      <div class="slide">
+        <div class="slide-number">3 / 8</div>
+        <div class="slide-header">
+          <h1 class="slide-title">Our Solution</h1>
+          <p class="slide-subtitle">
+            Build-Operate-Transfer Model for Sustainable Transformation
+          </p>
+        </div>
+        <div class="slide-content">
+          <div class="two-column">
+            <div>
+              <h2
+                style="font-size: 2.5rem; color: #0066cc; margin-bottom: 30px"
+              >
+                Unique BOT Approach
+              </h2>
+              <ul style="font-size: 1.3rem; line-height: 2; color: #333">
+                <li><strong>BUILD:</strong> NPHIES-native RCM platform</li>
+                <li>
+                  <strong>OPERATE:</strong> Full-service operations with 95%+
+                  accuracy
+                </li>
+                <li>
+                  <strong>TRANSFER:</strong> Knowledge transfer for independence
+                </li>
+                <li><strong>TRAIN:</strong> 25,000+ certified professionals</li>
+              </ul>
+              <div
+                style="
+                  margin-top: 40px;
+                  padding: 30px;
+                  background: #e8f4fd;
+                  border-radius: 15px;
+                  border-left: 5px solid #0066cc;
+                "
+              >
+                <h3 style="color: #0066cc; margin-bottom: 15px">
+                  Competitive Advantages
+                </h3>
+                <ul style="color: #333">
+                  <li>Only BOT company in Saudi healthcare</li>
+                  <li>Bilingual Arabic-English operations</li>
+                  <li>AI-powered with human expertise</li>
+                  <li>Training + operations integration</li>
+                </ul>
+              </div>
+            </div>
+            <div style="text-align: center">
+              <div
+                style="
+                  background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+                  color: white;
+                  padding: 60px;
+                  border-radius: 20px;
+                "
+              >
+                <h3 style="font-size: 2rem; margin-bottom: 30px">
+                  Target Outcomes
+                </h3>
+                <div style="display: grid; gap: 20px">
+                  <div>
+                    <div style="font-size: 3rem; font-weight: 900">98%</div>
+                    <div>Coding Accuracy</div>
+                  </div>
+                  <div>
+                    <div style="font-size: 3rem; font-weight: 900">30</div>
+                    <div>Days Average A/R</div>
+                  </div>
+                  <div>
+                    <div style="font-size: 3rem; font-weight: 900">95%</div>
+                    <div>First-Pass Claims</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 4: Market -->
+      <div class="slide">
+        <div class="slide-number">4 / 8</div>
+        <div class="slide-header">
+          <h1 class="slide-title">Market Opportunity</h1>
+          <p class="slide-subtitle">
+            Vision 2030 Creates SAR 10.5 billion RCM Market
+          </p>
+        </div>
+        <div class="slide-content">
+          <div class="two-column">
+            <div>
+              <div style="text-align: center; margin-bottom: 40px">
+                <div class="big-number">SAR 243.8 billion</div>
+                <p style="font-size: 1.5rem; color: #666">
+                  Vision 2030 Healthcare Investment
+                </p>
+              </div>
+              <div
+                style="background: #f8fafc; padding: 30px; border-radius: 15px"
+              >
+                <h3 style="color: #0066cc; margin-bottom: 20px">
+                  Key Market Drivers
+                </h3>
+                <ul style="font-size: 1.1rem; line-height: 1.8; color: #333">
+                  <li>100+ million NPHIES transactions since 2021</li>
+                  <li>2,300+ MOH facilities requiring compliance</li>
+                  <li>160+ private hospitals, 2,500+ clinics</li>
+                  <li>28.5% CAGR in AI-powered RCM market</li>
+                  <li>15,000+ medical coding jobs by 2027</li>
+                </ul>
+              </div>
+            </div>
+            <div>
+              <div
+                style="
+                  background: linear-gradient(135deg, #00a651 0%, #007a3d 100%);
+                  color: white;
+                  padding: 40px;
+                  border-radius: 20px;
+                  text-align: center;
+                "
+              >
+                <h3 style="font-size: 2rem; margin-bottom: 30px">
+                  Total Addressable Market
+                </h3>
+                <div style="display: grid; gap: 30px">
+                  <div>
+                    <div
+                      style="
+                        font-size: 2.5rem;
+                        font-weight: 900;
+                        margin-bottom: 10px;
+                      "
+                    >
+                      SAR 10.5 billion
+                    </div>
+                    <div style="font-size: 1.1rem">Saudi RCM Market 2030</div>
+                  </div>
+                  <div>
+                    <div
+                      style="
+                        font-size: 2.5rem;
+                        font-weight: 900;
+                        margin-bottom: 10px;
+                      "
+                    >
+                      SAR 15.0 billion
+                    </div>
+                    <div style="font-size: 1.1rem">GCC Digital Health 2026</div>
+                  </div>
+                  <div>
+                    <div
+                      style="
+                        font-size: 2.5rem;
+                        font-weight: 900;
+                        margin-bottom: 10px;
+                      "
+                    >
+                      15%
+                    </div>
+                    <div style="font-size: 1.1rem">
+                      Target Market Share by 2029
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 5: Business Model -->
+      <div class="slide">
+        <div class="slide-number">5 / 8</div>
+        <div class="slide-header">
+          <h1 class="slide-title">BOT Implementation</h1>
+          <p class="slide-subtitle">
+            Three-Phase Approach to Market Leadership
+          </p>
+        </div>
+        <div class="slide-content">
+          <div class="timeline-slide">
+            <div class="timeline-phase">
+              <div class="phase-number">1</div>
+              <h3 class="phase-title">BUILD</h3>
+              <div class="phase-duration">Months 1-12</div>
+              <ul style="text-align: left; color: #333; line-height: 1.8">
+                <li>NPHIES-compliant platform</li>
+                <li>AI-powered claims engine</li>
+                <li>24/7 operations centers</li>
+                <li>Training infrastructure</li>
+                <li>500+ certified coders hired</li>
+              </ul>
+              <div style="margin-top: 20px; font-weight: 700; color: #0066cc">
+                Investment: SAR 94M
+              </div>
+            </div>
+            <div class="timeline-phase">
+              <div class="phase-number">2</div>
+              <h3 class="phase-title">OPERATE</h3>
+              <div class="phase-duration">Months 13-36</div>
+              <ul style="text-align: left; color: #333; line-height: 1.8">
+                <li>Full RCM operations</li>
+                <li>Medical coding training</li>
+                <li>95%+ accuracy guarantee</li>
+                <li>Revenue optimization</li>
+                <li>110+ client facilities</li>
+              </ul>
+              <div style="margin-top: 20px; font-weight: 700; color: #0066cc">
+                Revenue: SAR 300M
+              </div>
+            </div>
+            <div class="timeline-phase">
+              <div class="phase-number">3</div>
+              <h3 class="phase-title">TRANSFER</h3>
+              <div class="phase-duration">Months 37-48</div>
+              <ul style="text-align: left; color: #333; line-height: 1.8">
+                <li>Knowledge transfer</li>
+                <li>Staff transition</li>
+                <li>Platform licensing</li>
+                <li>Ongoing support</li>
+                <li>Client independence</li>
+              </ul>
+              <div style="margin-top: 20px; font-weight: 700; color: #0066cc">
+                Recurring: SAR 94M+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 6: Financials -->
+      <div class="slide">
+        <div class="slide-number">6 / 8</div>
+        <div class="slide-header">
+          <h1 class="slide-title">Financial Projections</h1>
+          <p class="slide-subtitle">
+            Strong Growth with Clear Path to Profitability
+          </p>
+        </div>
+        <div class="slide-content">
+          <div class="revenue-chart">
+            <div class="revenue-bar">
+              <div class="bar" style="height: 50px">
+                <div class="bar-value">SAR 30M</div>
+              </div>
+              <div class="bar-year">2025</div>
+            </div>
+            <div class="revenue-bar">
+              <div class="bar" style="height: 120px">
+                <div class="bar-value">SAR 94M</div>
+              </div>
+              <div class="bar-year">2026</div>
+            </div>
+            <div class="revenue-bar">
+              <div class="bar" style="height: 220px">
+                <div class="bar-value">SAR 206M</div>
+              </div>
+              <div class="bar-year">2027</div>
+            </div>
+            <div class="revenue-bar">
+              <div class="bar" style="height: 320px">
+                <div class="bar-value">SAR 356M</div>
+              </div>
+              <div class="bar-year">2028</div>
+            </div>
+            <div class="revenue-bar">
+              <div class="bar" style="height: 400px">
+                <div class="bar-value">SAR 562M</div>
+              </div>
+              <div class="bar-year">2029</div>
+            </div>
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(4, 1fr);
+              gap: 30px;
+              margin-top: 40px;
+            "
+          >
+            <div
+              style="
+                background: #0066cc;
+                color: white;
+                padding: 30px;
+                border-radius: 15px;
+                text-align: center;
+              "
+            >
+              <div
+                style="font-size: 2.5rem; font-weight: 900; margin-bottom: 10px"
+              >
+                18mo
+              </div>
+              <div>To Profitability</div>
+            </div>
+            <div
+              style="
+                background: #00a651;
+                color: white;
+                padding: 30px;
+                border-radius: 15px;
+                text-align: center;
+              "
+            >
+              <div
+                style="font-size: 2.5rem; font-weight: 900; margin-bottom: 10px"
+              >
+                46.7%
+              </div>
+              <div>Net Margin Y5</div>
+            </div>
+            <div
+              style="
+                background: #ff6b35;
+                color: white;
+                padding: 30px;
+                border-radius: 15px;
+                text-align: center;
+              "
+            >
+              <div
+                style="font-size: 2.5rem; font-weight: 900; margin-bottom: 10px"
+              >
+                150%
+              </div>
+              <div>5-Year ROI</div>
+            </div>
+            <div
+              style="
+                background: #6b46c1;
+                color: white;
+                padding: 30px;
+                border-radius: 15px;
+                text-align: center;
+              "
+            >
+              <div
+                style="font-size: 2.5rem; font-weight: 900; margin-bottom: 10px"
+              >
+                180
+              </div>
+              <div>Clients by Y5</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 7: Team & Execution -->
+      <div class="slide">
+        <div class="slide-number">7 / 8</div>
+        <div class="slide-header">
+          <h1 class="slide-title">Execution Strategy</h1>
+          <p class="slide-subtitle">
+            World-Class Team with Proven Track Record
+          </p>
+        </div>
+        <div class="slide-content">
+          <div class="two-column">
+            <div>
+              <h2 style="color: #0066cc; margin-bottom: 30px">
+                30-Day Launch Plan
+              </h2>
+              <div
+                style="background: #f8fafc; padding: 30px; border-radius: 15px"
+              >
+                <div style="margin-bottom: 25px">
+                  <h4 style="color: #0066cc; margin-bottom: 10px">
+                    Week 1: Funding
+                  </h4>
+                  <p>Series A completion, Vision 2030 Fund engagement</p>
+                </div>
+                <div style="margin-bottom: 25px">
+                  <h4 style="color: #0066cc; margin-bottom: 10px">
+                    Week 2: Legal Setup
+                  </h4>
+                  <p>Saudi registration, SCFHS licensing, banking</p>
+                </div>
+                <div style="margin-bottom: 25px">
+                  <h4 style="color: #0066cc; margin-bottom: 10px">
+                    Week 3: Team Building
+                  </h4>
+                  <p>CTO, CMO, operations leadership hiring</p>
+                </div>
+                <div>
+                  <h4 style="color: #0066cc; margin-bottom: 10px">
+                    Week 4: Technology
+                  </h4>
+                  <p>NPHIES API access, development initiation</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h2 style="color: #0066cc; margin-bottom: 30px">
+                Risk Mitigation
+              </h2>
+              <div style="display: grid; gap: 20px">
+                <div
+                  style="
+                    background: #d4edda;
+                    padding: 20px;
+                    border-radius: 10px;
+                    border-left: 5px solid #28a745;
+                  "
+                >
+                  <h4 style="color: #155724; margin-bottom: 10px">Low Risk</h4>
+                  <p style="color: #155724">
+                    Technology development, team recruitment
+                  </p>
+                </div>
+                <div
+                  style="
+                    background: #fff3cd;
+                    padding: 20px;
+                    border-radius: 10px;
+                    border-left: 5px solid #ffc107;
+                  "
+                >
+                  <h4 style="color: #856404; margin-bottom: 10px">
+                    Medium Risk
+                  </h4>
+                  <p style="color: #856404">
+                    Market competition, regulatory changes
+                  </p>
+                </div>
+                <div
+                  style="
+                    background: #f8d7da;
+                    padding: 20px;
+                    border-radius: 10px;
+                    border-left: 5px solid #dc3545;
+                  "
+                >
+                  <h4 style="color: #721c24; margin-bottom: 10px">
+                    Managed Risk
+                  </h4>
+                  <p style="color: #721c24">
+                    NPHIES integration, talent retention
+                  </p>
+                </div>
+              </div>
+              <div
+                style="
+                  background: #e8f4fd;
+                  padding: 30px;
+                  border-radius: 15px;
+                  margin-top: 30px;
+                "
+              >
+                <h4 style="color: #0066cc; margin-bottom: 15px">
+                  Success Factors
+                </h4>
+                <ul style="color: #333; line-height: 1.8">
+                  <li>First-mover advantage</li>
+                  <li>Government alignment</li>
+                  <li>Proven BOT methodology</li>
+                  <li>Bilingual cultural competence</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 8: Investment Ask -->
+      <div class="slide cta-slide">
+        <div class="slide-number">8 / 8</div>
+        <div class="slide-content">
+          <h1 class="cta-title">Investment Opportunity</h1>
+          <p class="cta-subtitle">Join Us in Transforming Saudi Healthcare</p>
+          <div class="investment-details">
+            <div class="investment-item">
+              <div class="investment-amount">SAR 38M</div>
+              <div class="investment-source">
+                Vision 2030 Fund<br /><span
+                  style="font-size: 1rem; opacity: 0.8"
+                  >(40% of round)</span
+                >
+              </div>
+            </div>
+            <div class="investment-item">
+              <div class="investment-amount">SAR 38M</div>
+              <div class="investment-source">
+                International VCs<br /><span
+                  style="font-size: 1rem; opacity: 0.8"
+                  >(40% of round)</span
+                >
+              </div>
+            </div>
+            <div class="investment-item">
+              <div class="investment-amount">SAR 19M</div>
+              <div class="investment-source">
+                Strategic Partners<br /><span
+                  style="font-size: 1rem; opacity: 0.8"
+                  >(20% of round)</span
+                >
+              </div>
+            </div>
+          </div>
+          <div
+            style="
+              background: rgba(255, 255, 255, 0.2);
+              padding: 40px;
+              border-radius: 20px;
+              backdrop-filter: blur(10px);
+              margin-top: 50px;
+            "
+          >
+            <h3 style="font-size: 2rem; margin-bottom: 20px">
+              Why Invest Now?
+            </h3>
+            <ul
+              style="
+                font-size: 1.3rem;
+                line-height: 2;
+                text-align: left;
+                max-width: 600px;
+                margin: 0 auto;
+              "
+            >
+              <li>🚀 First-mover advantage in SAR 10.5 billion market</li>
+              <li>🏛️ Government alignment with Vision 2030</li>
+              <li>💡 Unique BOT model with proven ROI</li>
+              <li>🌍 Scalable to GCC and global markets</li>
+              <li>⏰ Perfect timing with NPHIES mandate</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="control-btn" onclick="prevSlide()">&larr; Previous</button>
+      <button class="control-btn" onclick="nextSlide()">Next &rarr;</button>
+      <button class="control-btn" onclick="window.print()">Print</button>
+      <button class="control-btn" onclick="toggleFullscreen()">
+        Fullscreen
+      </button>
+    </div>
+
+    <script>
+      let currentSlide = 0;
+      const slides = document.querySelectorAll(".slide");
+      const totalSlides = slides.length;
+
+      function showSlide(n) {
+        slides[currentSlide].classList.remove("active");
+        currentSlide = (n + totalSlides) % totalSlides;
+        slides[currentSlide].classList.add("active");
+      }
+
+      function nextSlide() {
+        showSlide(currentSlide + 1);
+      }
+
+      function prevSlide() {
+        showSlide(currentSlide - 1);
+      }
+
+      function toggleFullscreen() {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen();
+        } else {
+          document.exitFullscreen();
+        }
+      }
+
+      // Keyboard navigation
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight" || e.key === " ") {
+          nextSlide();
+        } else if (e.key === "ArrowLeft") {
+          prevSlide();
+        } else if (e.key === "f" || e.key === "F") {
+          toggleFullscreen();
+        }
+      });
+
+      // Auto-advance (optional - uncomment to enable)
+      // setInterval(nextSlide, 30000); // 30 seconds per slide
+    </script>
+  </body>
+</html>`
+    }} />
+  );
+}

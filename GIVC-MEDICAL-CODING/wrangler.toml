@@ -1,0 +1,21 @@
+name = "givc-medical-coding"
+compatibility_date = "2024-07-29"
+
+# Pages configuration
+pages_build_output_dir = "out"
+
+[env.production]
+name = "givc-medical-coding"
+
+[env.production.vars]
+NODE_ENV = "production"
+NEXT_PUBLIC_SITE_URL = "https://givc-medical-coding.pages.dev"
+STATIC_EXPORT = "true"
+
+[env.preview]
+name = "givc-medical-coding-preview"
+
+[env.preview.vars]
+NODE_ENV = "development"
+NEXT_PUBLIC_SITE_URL = "https://givc-medical-coding-preview.pages.dev"
+STATIC_EXPORT = "true"

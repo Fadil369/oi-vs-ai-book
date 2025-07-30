@@ -1,0 +1,23 @@
+{
+  "name": "givc-medical-coding",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "build:static": "STATIC_EXPORT=true next build",
+    "start": "next start",
+    "deploy": "npm run build:static && wrangler pages deploy out --project-name=givc-medical-coding"
+  },
+  "dependencies": {
+    "next": "15.4.4",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.1.0",
+    "@types/react": "19.1.9",
+    "eslint": "^9",
+    "eslint-config-next": "15.4.4"
+  }
+}

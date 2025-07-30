@@ -1,0 +1,100 @@
+{
+  "accessibility": {
+    "routeChanged": "Page changed to {route}",
+    "routes": {
+      "home": "Home",
+      "about": "About",
+      "courses": "Courses",
+      "contact": "Contact",
+      "register": "Register",
+      "page": "New page"
+    }
+  },
+  "navigation": {
+    "home": "Home",
+    "courses": "Courses",
+    "dashboard": "Dashboard",
+    "about": "About",
+    "contact": "Contact",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "profile": "Profile"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "submit": "Submit",
+    "continue": "Continue",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "language": "Language"
+  },
+  "hero": {
+    "title": "Master Medical Coding & Billing",
+    "subtitle": "Transform your healthcare career with our comprehensive, bilingual certification programs",
+    "description": "Join thousands of healthcare professionals advancing their careers through our world-class medical coding education platform.",
+    "getStarted": "Get Started",
+    "learnMore": "Learn More",
+    "watchDemo": "Watch Demo"
+  },
+  "features": {
+    "title": "Why Choose Our Platform",
+    "subtitle": "Everything you need to succeed in medical coding",
+    "virtualLab": {
+      "title": "Virtual Coding Lab",
+      "description": "Practice with real EHR systems and medical charts in a safe, guided environment"
+    },
+    "aiAssistant": {
+      "title": "AI-Powered Learning",
+      "description": "Get real-time code suggestions and instant feedback on your coding accuracy"
+    },
+    "bilingual": {
+      "title": "Bilingual Education",
+      "description": "Learn in both English and Arabic with culturally relevant content"
+    },
+    "certification": {
+      "title": "Industry Certification",
+      "description": "Earn recognized certifications that boost your career prospects"
+    },
+    "expert": {
+      "title": "Expert Instructors",
+      "description": "Learn from certified medical coding professionals with years of experience"
+    },
+    "flexible": {
+      "title": "Flexible Learning",
+      "description": "Study at your own pace with 24/7 access to course materials"
+    }
+  },
+  "courses": {
+    "title": "Our Courses",
+    "subtitle": "Comprehensive medical coding education programs",
+    "foundation": "Foundation Courses",
+    "codingSystems": "Coding Systems",
+    "specialty": "Specialty Tracks",
+    "duration": "Duration",
+    "level": "Level",
+    "price": "Price",
+    "enrollNow": "Enroll Now",
+    "learnMore": "Learn More",
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced"
+  },
+  "footer": {
+    "description": "Empowering healthcare professionals with world-class medical coding education in English and Arabic.",
+    "quickLinks": "Quick Links",
+    "legal": "Legal",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "support": "Support",
+    "copyright": "© 2025 GIVC Medical. All rights reserved."
+  }
+}
